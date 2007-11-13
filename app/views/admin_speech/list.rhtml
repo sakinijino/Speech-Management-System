@@ -7,6 +7,7 @@
   	<th>Date</th>
   	<th>Speaker</th>
     <th>Topic</th>
+    <th>Type</th>
     <th></th>
     <th></th>
   </tr>
@@ -16,6 +17,7 @@
     <td><%=h speech.date %></td>
     <td><%=h speech.speaker ? speech.speaker.realname : speech.speaker_name %></td>
     <td class="long-text"><%=h speech.topic %></td>
+    <td><%=h speech.speech_type %></td>
     <td><%= link_to 'Edit', admin_speech_url(:action => 'edit', :id => speech) %></td>
     <td><%= link_to 'Destroy', admin_speech_url({ :action => 'destroy', :id => speech }), :confirm => 'Are you sure?', :method => :post %></td>
   </tr>
