@@ -15,10 +15,15 @@ class AdminSpeechController < ApplicationController
   def list
     @speech_pages, @speeches = paginate :speeches, :order => 'date', :per_page => 10
   end
+  
+  def _get_user_select
+    return (User.find_all_by_role(User.role_for_speaker, :order=>'realname').map {|u| [u.realname,u.id]})
+  end
 
   def new
     @speech = Speech.new
-    @users = User.find_all_by_role(User.role_for_speaker).map {|u| [u.realname,u.id]}
+    @speech_types = Speech.speech_types
+    @users = self._get_user_select#User.find_all_by_role(User.role_for_speaker).map {|u| [u.realname,u.id]}
     if (@users.length==0)
       render :action=>'no_speaker'
     end
@@ -31,14 +36,16 @@ class AdminSpeechController < ApplicationController
       flash[:notice] = 'Speech was successfully created.'
       redirect_to admin_speech_url(:action => 'list')
     else
-      @users = User.find_all_by_role(User.role_for_speaker).map {|u| [u.realname,u.id]}
+      @speech_types = Speech.speech_types
+      @users =self._get_user_select
       render :action => 'new'
     end
   end
 
   def edit
     @speech = Speech.find(params[:id])
-    @users = User.find_all_by_role(User.role_for_speaker).map {|u| [u.realname,u.id]}
+    @speech_types = Speech.speech_types
+    @users = self._get_user_select#User.find_all_by_role(User.role_for_speaker).map {|u| [u.realname,u.id]}
     if (@users.length==0)
       render :action=>'no_speaker'
     end
@@ -52,7 +59,8 @@ class AdminSpeechController < ApplicationController
       flash[:notice] = 'Speech was successfully updated.'
       redirect_to admin_speech_url(:action => 'list', :id => @speech)
     else
-      @users = User.find_all_by_role(User.role_for_speaker).map {|u| [u.realname,u.id]}
+      @speech_types = Speech.speech_types
+      @users = self._get_user_select#User.find_all_by_role(User.role_for_speaker).map {|u| [u.realname,u.id]}
       render :action => 'edit'
     end
   end

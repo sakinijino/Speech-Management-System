@@ -11,4 +11,8 @@ class Speech < ActiveRecord::Base
   def date
     read_attribute("date" ).to_date if(read_attribute("date" ) != nil)
   end
+  
+  def self.speech_types
+    return ['Work Report', 'Paper Report']
+  end
 end

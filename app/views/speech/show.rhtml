@@ -21,6 +21,10 @@
                 <td><%=h @speech.date %></td>
         </tr>
         <tr>
+                <td>Type:</td>
+                <td><%=h @speech.speech_type %></td>
+        </tr>
+        <tr>
                 <td>Speaker:</td>
                 <td><%= @speech.speaker ? link_to(@speech.speaker.realname, {:controller=>'account', :action=>'show', :id=>@speech.speaker.id}) : h(@speech.speaker_name) %></td>
   </tr>
