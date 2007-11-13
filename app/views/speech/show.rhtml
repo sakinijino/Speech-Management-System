@@ -1,0 +1,58 @@
+<div class="headline">
+        <h1>Speech Informaiton</h1>
+        <a href="#postPosition">Discussion</a>
+        <% if @is_editable_speech%>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <%= link_to 'Edit', :controller => 'speaker', :action => 'edit', :id => @speech %>
+  <%end%>
+</div>
+
+<table class="speech-detail">
+        <colgroup>
+                <col class="title"/>
+                <col />
+        </colgroup>
+        <tr>
+                <td>Topic:</td>
+                <td class="long-text"><%=h @speech.topic %></td>
+        </tr>
+        <tr>
+                <td>Date:</td>
+                <td><%=h @speech.date %></td>
+        </tr>
+        <tr>
+                <td>Speaker:</td>
+                <td><%= @speech.speaker ? link_to(@speech.speaker.realname, {:controller=>'account', :action=>'show', :id=>@speech.speaker.id}) : h(@speech.speaker_name) %></td>
+  </tr>
+        <tr>
+                <td>Abstract:</td>
+                <td class="long-text"><%=simple_format @speech.abstract %></td>
+        </tr>
+        <tr>
+                <td>Attachment:</td>
+                <td class="long-text">
+        <%if(@speech.attachment!=nil)%>
+          <%= image_tag(@speech.attachment.split('.')[@speech.attachment.split('.').length-1]+".jpg",:style=>'position:relative;top:3px')%>
+          <%= link_to ((@speech.topic && @speech.topic!="") ? @speech.topic : "Attachment"), url_for_file_column(:speech, :attachment) %>
+        <%end%>
+    </td>
+        </tr>
+</table>
+
+<hr />
+
+<h1 id="postPosition">Discussion</h1>
+<% if @posts.size > 0 %>
+        <%= render :partial => 'forum/list' %>
+<% else %>
+        <div>There are no posts yet.</div>
+        <br />
+<% end %>
+
+<hr />
+<h1>New Post</h1>
+<%= error_messages_for 'post' %>
+<div class="clearElement"></div>
+<% form_tag ({:controller => 'forum', :action => 'create'}, {:class=> 'post-form'}) do %>
+  <%= render :partial => 'forum/form' %>
+<% end %>

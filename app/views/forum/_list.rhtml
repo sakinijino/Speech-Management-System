@@ -1,0 +1,16 @@
+<div class="post-container">
+<% for post in @posts %>
+   <div style="padding-left:<%= post.depth*20+5 %>px;" class="<%=cycle('list-line-even', 'list-line-odd')%>">
+      <% if(@parent_post == nil || post.id !=  @parent_post.id) %>
+        <%= link_to("#{h post.subject}", {:controller => 'forum', :action => 'show', :id => post.id}, {:class=>'subject'}) %>
+      <% else%>
+        <a style="color:black" class='subject'><%= h post.subject%></a>
+      <% end%>
+      - 
+      <span>
+      	<%= post.is_anonymous ? 'Anonymous' : post.user ? link_to(post.user.realname, {:controller=>'account', :action=>'show', :id=>post.user.id}, {:class=>'name'}) : h(post.user_name) %> -
+      	<%= h(post.created_at.strftime("%Y-%m-%d %H:%M"))%>
+      </span>
+   </div>
+<% end %>
+</div>

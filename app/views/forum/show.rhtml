@@ -1,0 +1,39 @@
+<div class="headline">
+	<h1><%=h @parent_post.subject %></h1>
+	<%= link_to 'Back to Speech', :controller=>'speech', :action => 'show', :id=>@speech %>
+  <% if @has_destroy_authority%>
+    <a>&nbsp;&nbsp;|&nbsp;&nbsp;</a>
+    <%= link_to 'Delete Post', {:action => 'destroy', :id => @parent_post}, {:confirm => 'Are you sure?', :method => :post} %></td>
+  <%end%>
+</div>
+
+<table class="post-detail">
+	<colgroup>
+		<col class="title"/>
+		<col />
+	</colgroup>
+	<tr>
+		<td>Speech:</td>
+		<td class="long-text"><%=h @speech.topic %></td>
+	</tr>
+	<tr>
+		<td>Poster:</td>
+		<td class="long-text"><%= @parent_post.is_anonymous ? 'Anonymous' : @parent_post.user ? link_to(@parent_post.user.realname, {:controller=>'account', :action=>'show', :id=>@parent_post.user.id}) : h(@parent_post.user_name) %></td>
+	</tr>	
+	<tr>
+		<td>Body:</td>
+		<td class="long-text"><%= simple_format @parent_post.body %></td>
+	</tr>
+</table>
+
+<hr />
+<h1>Thread</h1>
+<%= render :partial => 'list' %>
+
+<hr />
+<h1>Reply</h1>
+<%= error_messages_for 'post' %>
+<div class="clearElement"></div>
+<% form_tag ({:action => 'create'}, {:class=> 'post-form'}) do %>
+  <%= render :partial => 'form' %>
+<% end %>

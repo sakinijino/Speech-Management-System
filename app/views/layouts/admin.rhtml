@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Admin</title>
+<!--  <%= stylesheet_link_tag 'scaffold' %> -->
+                        <%= stylesheet_link_tag 'common' %>
+</head>
+<body>
+
+<div class="container">
+
+<img src="/images/logo.jpg" class="logo" style="width:450px;height:50px"/>
+<div class="header">
+  <%if !logged_in? %>
+  <span><%= link_to 'Login', :controller => 'admin_account', :action => 'login' %></span>
+  <%else%>
+  <h>Welcome, <%=h current_administrator.login%></h> -
+  <span><%= link_to 'Logout', :controller => 'admin_account', :action => 'logout' %></span>
+  <%end%>
+</div>
+
+<div class="clearElement"></div>
+
+<ul class="menu">
+        <h1>Menu</h1>
+  <%if logged_in? %>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'admin_speech'})))%>>
+                <%= link_to 'Speech List', admin_speech_url(:controller =>'admin_speech', :action=>'index')%></li>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'admin_user'})))%>>
+                <%= link_to 'User List', admin_user_url(:controller =>'admin_user', :action=>'index')%></li>
+  <%end%>
+</ul>
+
+<div class="content">
+<p class="flash"><%= flash[:notice] %></p>
+<%= yield  %>
+</div>
+
+<%= render :partial => 'layouts/footer' %>
+
+</div>
+</body>
+</html>

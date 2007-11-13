@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Home Page</title>
+  <%= stylesheet_link_tag 'common' %>
+  <%= stylesheet_link_tag 'speech' %>
+</head>
+<body>
+
+<div class="container">
+
+        <img src="/images/logo.jpg" class="logo" style="width:450px;height:50px"/>
+  <div class="header">
+          <%if !logged_in? %>
+          <span><%= link_to 'Login', :controller => 'account', :action => 'login' %></span>
+          <%else%>
+          <h>Welcome, <%=h current_user.realname%></h>&nbsp;&nbsp;-&nbsp;&nbsp;
+          <span><%= link_to 'Profile', :controller => 'account', :action => 'edit' %></span>
+          <span><a> | </a></span>
+          <span><%= link_to 'Logout', :controller => 'account', :action => 'logout' %></span>
+          <%end%>
+        </div>
+
+        <div class="clearElement"></div>
+
+        <ul class="menu">
+        <h1>Menu</h1>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speech',:action =>'next'})))%>>
+                <%= link_to 'Next Speech', :controller =>'speech', :action=>'next'%>
+          </li>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speech',:action =>'list'})))%>>
+                <%= link_to 'Unfinished-Speech List', :controller =>'speech', :action=>'list'%>
+          </li>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speech',:action =>'history_list'})))%>>
+                <%= link_to 'History-Speech List', :controller =>'speech', :action=>'history_list'%>
+          </li>
+
+          <%if logged_in? %>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speaker',:action =>'list'})))%>>
+                <%= link_to 'My Unfinished-Speech List', :controller =>'speaker', :action=>'list'%>
+          </li>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speaker',:action =>'history_list'})))%>>
+                <%= link_to 'My History-Speech List', :controller =>'speaker', :action=>'history_list'%>
+          </li>
+          <%end%>
+        </ul>
+
+        <div class="content">
+    <p class="flash"><%= flash[:notice] %></p>
+    <%= yield  %>
+        </div>
+
+  <%= render :partial => 'layouts/footer' %>
+</div>
+</body>
+</html>

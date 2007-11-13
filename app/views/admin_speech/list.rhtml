@@ -1,0 +1,26 @@
+<div class="headline">
+	<h1>Listing speeches</h1>
+	<%= link_to 'New speech', admin_speech_url(:action => 'new') %>
+</div>
+<table>
+  <tr>
+  	<th>Date</th>
+  	<th>Speaker</th>
+    <th>Topic</th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+<% for speech in @speeches  %>
+  <tr class="<%= cycle('list-line-odd', 'list-line-even') %> selected-table-item">
+    <td><%=h speech.date %></td>
+    <td><%=h speech.speaker ? speech.speaker.realname : speech.speaker_name %></td>
+    <td class="long-text"><%=h speech.topic %></td>
+    <td><%= link_to 'Edit', admin_speech_url(:action => 'edit', :id => speech) %></td>
+    <td><%= link_to 'Destroy', admin_speech_url({ :action => 'destroy', :id => speech }), :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', admin_speech_url({ :page => @speech_pages.current.previous }) if @speech_pages.current.previous %>
+<%= link_to 'Next page', admin_speech_url({ :page => @speech_pages.current.next }) if @speech_pages.current.next %> 

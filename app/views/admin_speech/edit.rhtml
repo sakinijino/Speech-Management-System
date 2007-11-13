@@ -1,0 +1,7 @@
+<h1>Editing speech</h1>
+
+<% form_tag :action => 'update', :id => @speech do %>
+  <%= render :partial => 'form' %>
+	<br /><br />
+  <%= submit_tag 'Save' %>
+<% end %>

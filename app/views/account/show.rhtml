@@ -1,0 +1,18 @@
+<div class="headline">
+	<h1><%=h @user.realname %></h1>
+</div>
+
+<table class="post-detail">
+	<colgroup>
+		<col class="title"/>
+		<col />
+	</colgroup>
+	<tr>
+		<td>E-mail:</td>
+		<td class="long-text"><%= mail_to @user.email %></td>
+	</tr>
+	<tr>
+		<td>Role:</td>
+		<td><%= h @user.role %></td>
+	</tr>	
+</table>

@@ -1,0 +1,14 @@
+<%= error_messages_for 'speech' %>
+<div class="clearElement"></div>
+<!--[form:speech]-->
+<label for="speech_topic">Topic:</label>
+<%= text_field 'speech', 'topic'  %>
+
+<label for="speech_abstract">Abstract:</label>
+<%= text_area 'speech', 'abstract'  %>
+
+<label for="speech_attachment">Attachment:</label>
+<%= file_column_field 'speech', "attachment" %>
+
+<!--[form:speech]-->
+

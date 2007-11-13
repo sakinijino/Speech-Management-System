@@ -1,0 +1,9 @@
+<%= hidden_field :post, :parent_id %>
+<%= hidden_field :post, :speech_id %>
+<label for="post_subject">Subject</label>
+<%= text_field 'post', 'subject' %>
+<label for="post_body">Body</label>
+<%= text_area 'post', 'body' %>
+<%= check_box 'post', 'is_anonymous', {:class=>'checkbox'} %>
+<label for="post_anonymous" style='display:inline;'>Anonymous</label>
+<%= submit_tag "Post", :class=>"submit" %>

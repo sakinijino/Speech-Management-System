@@ -1,0 +1,93 @@
+.container{
+	width: 875px;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.menu{
+	width: 200px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-right: 14px;
+	padding-left: 14px;
+}
+
+.content{
+	width: 585px;
+	margin-right: 0px;
+	padding-top: 15px;
+	padding-bottom: 20px;
+	padding-right: 10px;
+	padding-left: 18px;
+}
+
+.content .speech-detail{
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.content .speech-detail td{
+	padding-bottom: 15px;
+	vertical-align: top;
+}
+
+.content .speech-detail .title{
+	color: rgb(102,102,102);
+	width: 3em;
+}
+
+.content .post-container{
+	border: 1px solid rgb(195,217,255);
+	padding: 3px;
+	margin-top: 15px;	
+	margin-bottom: 15px;
+}
+
+.content .post-container div{
+	padding: 2px 0 2px 0;
+}
+
+.content .post-container span, .content .post-container a.name{
+	color:rgb(153, 153, 153);
+}
+
+.content .post-container a.name:hover { color:#ff7031;}
+
+.content .post-container a.subject{
+	font-size: 14px;
+}
+
+.content .post-form input, .content .post-form textarea{
+	width: 25em;
+}
+
+.content .post-form textarea{
+	height:	10em;
+	margin-bottom: 5px;
+}
+
+.content .post-form input.checkbox{
+	display:inline;
+}
+
+.content .post-form input.submit{
+	margin-top:10px;
+}
+
+.content .post-detail{
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+.content .post-detail td{
+	padding-bottom: 15px;
+	vertical-align: top;
+}
+
+.content .post-detail .title{
+	color: rgb(102,102,102);
+	width: 3em;
+}

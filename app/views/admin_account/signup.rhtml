@@ -1,0 +1,14 @@
+<%= error_messages_for :administrator %>
+<% form_for :administrator do |f| -%>
+<label for="login">Login Name</label>
+<%= f.text_field :login %>
+
+<label for="password">Password</label>
+<%= f.password_field :password %>
+
+<label for="password_confirmation">Confirm Password</label>
+<%= f.password_field :password_confirmation %>
+
+<br />
+<%= submit_tag 'Sign up' %>
+<% end -%>

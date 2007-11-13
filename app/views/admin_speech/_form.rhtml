@@ -1,0 +1,12 @@
+<%= error_messages_for 'speech' %>
+
+<!--[form:speech]-->
+
+<label for="speech_date">Date</label>
+<%= datetime_select 'speech', 'date', :discard_hour=>true, :discard_minute=>true  %>
+
+<label for="speech_speaker_id">Speaker</label>
+<%= select :speech,:speaker_id, @users %>
+
+<!--[eoform:speech]-->
+

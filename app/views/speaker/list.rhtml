@@ -1,0 +1,25 @@
+<div class="headline">
+	<h1>Listing speeches</h1>
+</div>
+
+<table>
+  <tr>
+  	<th>Date</th>
+    <th>Topic</th>
+    <th>Speaker</th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+<% for speech in @speeches %>
+  <tr class="<%= cycle('list-line-odd', 'list-line-even') %> selected-table-item">
+    <td><%=h speech.date %></td>
+    <td class="long-text"><%=h speech.topic %></td>
+    <td><%= speech.speaker ? link_to(speech.speaker.realname, {:controller=>'account', :action=>'show', :id=>speech.speaker.id}) : h(speech.speaker_name) %></td>
+    <td><%= link_to 'Show', :controller => 'speech', :action => 'show', :id => speech %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => speech %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

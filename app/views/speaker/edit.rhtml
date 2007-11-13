@@ -1,0 +1,14 @@
+<div class="headline">
+	<h1>Editing speech</h1>
+</div>
+
+<% form_tag({:action => 'update', :id => @speech}, {:multipart => 'true'}) do%>
+  <%= render :partial => 'form' %>
+  <br />
+  <%= submit_tag 'Save' %>
+<% end %>
+
+<!--
+<%= link_to 'Show', :action => 'show', :id => @speech %> |
+<%= link_to 'Back', :action => 'list' %>
+-->
