@@ -13,7 +13,8 @@ class AdminUserController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @user_pages, @users = paginate :users, :per_page => 10, :order=>'realname'
+    @user_pages, @users = paginate :users, :per_page => 10
+    @users.sort! {|u1, u2| u1.realname<=>u2.realname}
   end
 
   def new
@@ -23,9 +24,9 @@ class AdminUserController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.realname = @user.login if @user.realname = ""
-    @user.password = @user.login if @user.password = ""
-    @user.password_confirmation = @user.login if @user.password_confirmation = ""
+    @user.realname = @user.login if @user.realname == ""
+    @user.password = @user.login if @user.password == ""
+    @user.password_confirmation = @user.login if @user.password_confirmation == ""
     if @user.save
       flash[:notice] = 'User was successfully created.'
       redirect_to admin_user_url(:action => 'list')
@@ -42,7 +43,7 @@ class AdminUserController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.realname = @user.login if @user.realname = ""
+    @user.realname = @user.login if @user.realname == ""
     if @user.update_attributes(params[:user])
       flash[:notice] = 'User was successfully updated.'
       redirect_to admin_user_url(:action => 'list', :id => @user)
