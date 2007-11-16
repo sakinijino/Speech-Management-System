@@ -32,6 +32,8 @@ class AdminUserController < ApplicationController
       redirect_to admin_user_url(:action => 'list')
     else
       @roles = User.role_list
+      @user.password = ""
+      @user.password_confirmation = ""
       render :action => 'new'
     end
   end
@@ -49,6 +51,8 @@ class AdminUserController < ApplicationController
       redirect_to admin_user_url(:action => 'list', :id => @user)
     else
       @roles = User.role_list
+      @user.password = ""
+      @user.password_confirmation = ""
       render :action => 'edit'
     end
   end
