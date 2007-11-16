@@ -14,7 +14,7 @@ class AdminUserController < ApplicationController
 
   def list
     @user_pages, @users = paginate :users, :per_page => 10
-    @users.sort! {|u1, u2| u1.realname<=>u2.realname}
+    @users.sort! {|u1, u2| Iconv.conv("GBK", "UTF-8", u1.realname)<=>Iconv.conv("GBK", "UTF-8", u2.realname)}
   end
 
   def new
