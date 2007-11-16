@@ -17,7 +17,7 @@ class AdminSpeechController < ApplicationController
   end
   
   def _get_user_select
-    return (User.find_all_by_role(User.role_for_speaker).sort_by {|u| u.realname}).map {|u| [u.realname,u.id]}
+    return (User.find_all_by_role(User.role_for_speaker).sort_by {|u| Iconv.conv("GBK", "UTF-8", u.realname)}).map {|u| [u.realname,u.id]}
   end
 
   def new
