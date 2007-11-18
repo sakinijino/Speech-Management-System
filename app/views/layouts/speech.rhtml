@@ -47,7 +47,7 @@
           </li>
           <% if CAN_USERS_CREATE_THEIR_OWN_SPEECHES %>
           <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speaker',:action =>'new'})))%>>
-                <%= link_to 'New Speech', :controller =>'speaker', :action=>'new'%>
+                <%= link_to 'Create My Speech', :controller =>'speaker', :action=>'new'%>
           </li>
           <% end %>
           <%end%>
