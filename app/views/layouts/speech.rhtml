@@ -45,6 +45,11 @@
           <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speaker',:action =>'history_list'})))%>>
                 <%= link_to 'My History-Speech List', :controller =>'speaker', :action=>'history_list'%>
           </li>
+          <% if CAN_USERS_CREATE_THEIR_OWN_SPEECHES %>
+          <li <%= ("class='on-selected'" if(is_selectioned_item( {:controller =>'speaker',:action =>'new'})))%>>
+                <%= link_to 'New Speech', :controller =>'speaker', :action=>'new'%>
+          </li>
+          <% end %>
           <%end%>
         </ul>
 

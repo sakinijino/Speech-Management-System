@@ -1,6 +1,8 @@
 class SpeakerController < ApplicationController
   include AuthenticatedSystem
   before_filter :login_required
+  before_filter :can_create_own_speech, 
+                    :only=>[:new,:create]
   before_filter :validateVisterIdentity, 
                     :only=>[:edit,:update]
   layout 'speech'
@@ -10,7 +12,7 @@ class SpeakerController < ApplicationController
     render :action => 'list'
   end
 
-  verify :method => :post, :only => [ :update ],
+  verify :method => :post, :only => [ :update, :create ],
          :redirect_to => { :action => :list }
 
   def list
@@ -39,6 +41,23 @@ class SpeakerController < ApplicationController
     render :action => 'list'
   end
   
+  def new
+    @speech = Speech.new
+    @speech_types = Speech.speech_types
+  end
+  
+  def create
+    @speech = Speech.new(params[:speech])
+    @speech.speaker = current_user
+    @speech.speaker_name = @speech.speaker.realname;
+    if @speech.save
+      flash[:notice] = 'Speech was successfully created.'
+      redirect_to :action => 'list'
+    else
+      render :action => 'new'
+    end
+  end
+  
   private
   def validateVisterIdentity
       @speech = Speech.find(params[:id])
@@ -48,5 +67,11 @@ class SpeakerController < ApplicationController
        return
      end
    end
+   
+  def can_create_own_speech
+    if (not CAN_USERS_CREATE_THEIR_OWN_SPEECHES)
+      redirect_to :action => 'list'
+    end
+  end
    
 end
