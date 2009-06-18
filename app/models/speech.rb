@@ -6,7 +6,7 @@ class Speech < ActiveRecord::Base
                 :dependent => :destroy
   file_column :attachment
 
-  validates_file_format_of :attachment, :in => ["ppt", "pdf", "doc", "rar", "zip", "xls"]
+  validates_file_format_of :attachment, :in => ["ppt", "pdf", "doc", "rar", "zip", "xls", "pptx"]
 
   def date
     read_attribute("date" ).to_date if(read_attribute("date" ) != nil)
