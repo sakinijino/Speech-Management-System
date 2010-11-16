@@ -1,33 +1,21 @@
-2007-09-15 v0.1.2
+锘縎etup:
+  * git clone somewhere.git
+  * gem install rails -v 1.2.5 or rake rails:freeze:edge TAG=rel_1-2-5
+  * edit config/database.yml if necessary
+  * rake db:migrate RAILS_ENV=production
+  * ruby script/server -e production
+  * Enjoy yourself!
 
-增加功能
-1.管理员
- 1.1编辑用户角色
-2.普通用户
- 2.1匿名参与讨论
- 2.2删除自己的讨论
- 2.3编辑个人信息
- 2.4查看他人信息
-3.报告人
- 3.1删除自己报告中的讨论
+Admin Usage:
+  1. Signup admin (first time only)
+     http://127.0.0.1:3000/admin_account/signup
+  2. Login admin
+     http://127.0.0.1:3000/admin
+  3. Add some users and speeches
 
-2007-09-13 v0.1.1
-
-基本功能
-1.管理员
- 1.1编辑报告安排
- 1.2编辑用户信息
-2.普通用户
- 2.1浏览下一次报告
- 2.2浏览历史报告
- 2.3下载报告相关资料
- 2.4参与报告讨论
-3.报告人
- 3.1同普通用户
- 3.2编辑报告
- 3.3上传报告相关资料
-4.修正了几个小bug
- 4.1next speech为空时的异常
- 4.2admin signup
- 4.3session改到了数据库中
- 4.4默认页面的路由
+Common Usage:
+  1. Login (after admin added users)
+     http://127.0.0.1:3000/
+  2. View speech list
+  3. Edit your speeches
+  4. Discuss on speeches
