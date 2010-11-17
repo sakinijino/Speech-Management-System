@@ -1,5 +1,5 @@
 ﻿Setup:
-  * git clone somewhere.git
+  * git clone sms.git
   * gem install rails -v 1.2.5 or rake rails:freeze:edge TAG=rel_1-2-5
   * edit config/database.yml if necessary
   * rake db:migrate RAILS_ENV=production
