@@ -1,7 +1,7 @@
 class ForumController < ApplicationController
   include AuthenticatedSystem
-  before_filter :login_required,
-                    :only => [:create, :destroy]
+  before_filter :login_required #,
+                    #:only => [:create, :destroy]
                     
   layout 'speech'
   
